@@ -1,0 +1,162 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/header") %>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-5">
+      <h1 class="text-3xl font-bold text-center mb-5 capitalize">
+        <%= pokemon.name %>
+      </h1>
+      <div class="flex flex-col items-center">
+        <img
+          src="<%= pokemon.sprites.front_default %>"
+          alt="<%= pokemon.name %>"
+          class="w-40 h-40"
+        />
+        <p class="text-lg font-semibold">Height: <%= pokemon.height %></p>
+        <p class="text-lg font-semibold">Weight: <%= pokemon.weight %></p>
+        <p class="text-lg font-semibold">
+          Type: <%= pokemon.types.map(t => t.type.name).join(', ') %>
+        </p>
+      </div>
+      <div class="text-center mt-5">
+        <a href="/" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Back</a>
+      </div>
+    </div>
+    <%- include("../partials/footer") %>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/header") %>
+  </head>
+  <script>
+    const typeColors = {
+      fire: 'bg-red-500 border-red-600',
+      water: 'bg-blue-500 border-blue-600',
+      grass: 'bg-green-500 border-green-600',
+      electric: 'bg-yellow-500 border-yellow-600',
+      ground: 'bg-yellow-900 border-yellow-800',
+      psychic: 'bg-pink-500 border-pink-600',
+      ice: 'bg-teal-500 border-teal-600',
+      dragon: 'bg-indigo-600 border-indigo-700',
+      dark: 'bg-gray-800 border-gray-900',
+      fairy: 'bg-pink-300 border-pink-400',
+      normal: 'bg-gray-300 border-gray-400',
+      flying: 'bg-indigo-400 border-indigo-500',
+      fighting: 'bg-red-700 border-red-800',
+      poison: 'bg-purple-500 border-purple-600',
+      bug: 'bg-lime-500 border-lime-600',
+      rock: 'bg-yellow-600 border-yellow-700',
+      ghost: 'bg-purple-900 border-purple-950',
+      steel: 'bg-gray-500 border-gray-600',
+      mystery: 'bg-gray-400 border-gray-500',
+    };
+  </script>
+  <body class="bg-gray-900 text-white font-sans">
+    <div class="container mx-auto p-5 mt-10 flex justify-center">
+      <div class="pokedex bg-gray-800 rounded-xl w-full max-w-lg overflow-hidden shadow-xl relative">
+        
+        <div class="relative top-[30px] left-[30px] w-23 h-23 bg-blue-500 rounded-full border-4 border-black">
+          <div class="w-full h-full rounded-full border-4 border-white"></div>
+        </div>
+        <div class="relative top-[-50px] left-[150px] w-10 h-10 bg-red-500 rounded-full border-4 border-black"></div>
+        <div class="relative top-[-90px] left-[200px] w-10 h-10 bg-green-500 rounded-full border-4 border-black"></div>
+        <div class="relative top-[-130px] left-[250px] w-10 h-10 bg-yellow-500 rounded-full border-4 border-black"></div>
+
+        <svg height="100" width="100%" class="relative top-[-150px]">
+          <polyline points="0,75 120,75 145,38 520,38" style="fill: none; stroke: black; stroke-width: 5" />
+        </svg>
+
+        <div class="flex flex-col items-center relative top-[-140px]">
+          <div class="border-4 border-white rounded-bl-3xl">
+            <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %>" class="w-100 h-100" />
+          </div>
+          <h1 class="text-3xl font-bold text-center mb-5 capitalize relative top-[-60px] left-[80px]">
+            <%= pokemon.name %>
+          </h1>
+        </div>
+
+        <div class="relative top-[-170px] left-[50px] border-4 border-white p-4 w-102 text-center">
+          <div class="flex justify-center space-x-4">
+            <p class="text-lg font-semibold">Height: <%= pokemon.height %></p>
+            <p class="text-lg font-semibold">Weight: <%= pokemon.weight %></p>
+          </div>
+
+          <p class="text-lg font-semibold mt-2">
+            Type: 
+            <span class="flex justify-center mt-2">
+              <% pokemon.types.forEach(typeObj => { %>
+                <span class="px-4 py-2 inline-block rounded-full text-white font-semibold mr-2 
+                  <%= typeColors[typeObj.type.name] || 'border-gray-500' %>">
+                  <%= typeObj.type.name %>
+                </span>
+              <% }); %>
+            </span>
+          </p>
+        </div>
+
+        <div class="text-center mt-5 relative top-[-100px]">
+          <a href="/" class="px-8 py-3 bg-blue-500 text-white text-2xl rounded-xl shadow-lg hover:bg-blue-600 transition duration-300">
+            Back
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <%- include("../partials/footer") %>
+
+   
+  </body>
+</html>
+
+
+
+<!-- <div class="container mx-auto p-5 mt-10 flex justify-center">
+  <div class="pokedex bg-gray-800 rounded-xl w-full max-w-lg overflow-hidden shadow-xl">
+    
+   
+    <div class="pokedex-header bg-gray-700 p-4 flex justify-between items-center">
+      <div class="pokedex-name text-3xl font-extrabold text-center text-indigo-500 capitalize">
+        <%= pokemon.name %>
+      </div>
+    </div>
+
+   
+    <div class="pokemon-image bg-gray-600 p-6">
+      <img
+        src="<%= pokemon.sprites.front_default %>"
+        alt="<%= pokemon.name %>"
+        class="w-56 h-56 mx-auto rounded-xl border-4 border-indigo-500 shadow-lg"
+      />
+    </div>
+
+  
+    <div class="pokemon-info p-6 bg-gray-700">
+      
+      <div class="type-section text-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-300 mb-2">Type</h3>
+        <div class="pokemon-types bg-indigo-500 text-white px-4 py-1 rounded-full inline-block">
+          <%= pokemon.types.map(t => t.type.name).join(', ') %>
+        </div>
+      </div>
+      
+     
+      <div class="stats flex justify-between text-gray-300">
+        <div class="height text-sm font-semibold">Height: <%= pokemon.height %> dm</div>
+        <div class="weight text-sm font-semibold">Weight: <%= pokemon.weight %> hg</div>
+      </div>
+    </div>
+
+
+    <div class="text-center pb-6">
+      <a href="/" class="px-6 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition duration-200 ease-in-out">
+        Back to Pokedex
+      </a>
+    </div>
+  </div>
+</div> -->
